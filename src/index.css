@@ -1,0 +1,12 @@
+/* handle outermost, global css */
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Arial, sans-serif;
+  font-size: 0.875rem;
+  background-color: #182535;
+}

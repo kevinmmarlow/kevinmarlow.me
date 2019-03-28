@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core';
 
-import theme from 'theme/PageTheme';
-import store from 'store';
+import theme from './theme/PageTheme';
+import './index.css';
+import store from './store';
 import App from './pages/App';
 
 ReactDOM.render(
