@@ -57,13 +57,15 @@ const App = props => {
       <Router history={history}>
         <div className={classes.appBar}>
           <Header>{ROUTES}</Header>
-          <Switch>
-            <Route path="/" exact component={Today} />
-            <Route path="/news" exact component={News} />
-            <Route path="/social" exact component={Social} />
-            <Route path="/devops" exact component={DevOps} />
-            <Route path="/health" exact component={Health} />
-          </Switch>
+          <div style={{ padding: '2rem' }}>
+            <Switch>
+              <Route path="/" exact component={Today} />
+              <Route path="/news" exact component={News} />
+              <Route path="/social" exact component={Social} />
+              <Route path="/devops" exact component={DevOps} />
+              <Route path="/health" exact component={Health} />
+            </Switch>
+          </div>
         </div>
       </Router>
     </div>
