@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import { withStyles } from '@material-ui/core';
+import { withStyles, CssBaseline } from '@material-ui/core';
 
 import history from '../history';
 import Today from 'pages/app/Today';
@@ -55,9 +55,10 @@ const App = props => {
   return (
     <div className={classes.appRoot}>
       <Router history={history}>
+        <CssBaseline />
         <div className={classes.appBar}>
           <Header>{ROUTES}</Header>
-          <div style={{ padding: '2rem' }}>
+          <main>
             <Switch>
               <Route path="/" exact component={Today} />
               <Route path="/news" exact component={News} />
@@ -65,7 +66,7 @@ const App = props => {
               <Route path="/devops" exact component={DevOps} />
               <Route path="/health" exact component={Health} />
             </Switch>
-          </div>
+          </main>
         </div>
       </Router>
     </div>
