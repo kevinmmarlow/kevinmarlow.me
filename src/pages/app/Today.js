@@ -43,7 +43,7 @@ const Today = props => {
 
   return (
     <div className={classNames(classes.layout, classes.cardGrid)}>
-      <Grid container spacing="3rem">
+      <Grid container>
         <Grid item key="weather" sm={6} md={4} lg={3}>
           <Card className={classes.card}>
             <CardMedia

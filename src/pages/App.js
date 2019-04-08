@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { withStyles, CssBaseline } from '@material-ui/core';
+import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
 
 import history from '../history';
 import Today from 'pages/app/Today';
@@ -9,6 +10,7 @@ import Social from 'pages/app/Social';
 import DevOps from 'pages/app/DevOps';
 import Health from 'pages/app/Health';
 import Header from './app/Header';
+import Footer from './app/Footer';
 
 const ROUTES = [
   {
@@ -51,7 +53,9 @@ const styles = theme => ({
 });
 
 const App = props => {
-  const { classes } = props;
+  const { classes, theme } = props;
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+
   return (
     <div className={classes.appRoot}>
       <Router history={history}>
@@ -67,10 +71,11 @@ const App = props => {
               <Route path="/health" exact component={Health} />
             </Switch>
           </main>
+          {matches && <Footer />}
         </div>
       </Router>
     </div>
   );
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles, { withTheme: true })(App);

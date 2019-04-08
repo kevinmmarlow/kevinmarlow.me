@@ -54,7 +54,7 @@ class Header extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.appBar}>
-        <AppBar showMenuIconButton={false} position="static" color="primary">
+        <AppBar position="static" color="primary">
           <Tabs
             classes={{ indicator: classes.noIndicator }}
             value={this.state.value}
