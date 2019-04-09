@@ -1,5 +1,3 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-
 export const PRIMARY_COLOR = '#182535';
 export const SECONDARY_COLOR = '#a7bcd7';
 export const BORDER_COLOR = '#a7bcd7';
@@ -10,34 +8,11 @@ export const BACKGROUND_COLORS = {
   block: '#f4f8f9'
 };
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: PRIMARY_COLOR
-    },
-    secondary: {
-      main: SECONDARY_COLOR
-    },
-    divider: OPAC_BORDER_COLOR,
-    border: BORDER_COLOR, // custom,
-    background: { ...BACKGROUND_COLORS }
-  },
-  typography: {
-    useNextVariants: true,
-    fontFamily: [
-      'Noto Sans TC',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Arial',
-      'sans-serif'
-    ].join(',')
-  },
-  props: {
-    MuiButtonBase: {
-      disableRipple: true // No more ripple, on the whole application 💣!
-    }
-  }
-});
-
-export default theme;
+// fontFamily: [
+//   'Noto Sans TC',
+//   '-apple-system',
+//   'BlinkMacSystemFont',
+//   '"Segoe UI"',
+//   'Arial',
+//   'sans-serif'
+// ].join(',')

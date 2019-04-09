@@ -1,53 +1,35 @@
 import React from 'react';
-import { withStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 
 import { POOLSIDE_FM_STATUS, POOLSIDE_FM_STREAM } from 'utils/constants';
 import Equalizer from './footer/Equalizer';
 import { createPoller } from '../../utils/polling';
 
-const styles = theme => ({
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    backgroundColor: '#000000',
-    height: '3rem',
-    display: 'flex',
-    alignItems: 'center'
-  },
-  playPauseButton: {
-    color: '#ffffff',
-    backgroundColor: '#5995da' /* Blue */,
-    fontWeight: 'bold',
-    padding: '0.5rem',
-    textAlign: 'center',
-    borderRadius: '5px',
-    width: '8rem',
-    margin: '0.5rem'
-  },
-  musicTitle: {
-    color: '#ffffff',
-    marginLeft: '1rem'
-  }
-});
-
 class Footer extends React.Component {
-  state = {
-    isPlaying: false,
-    musicTitle: null,
-    musicArtworkUrl: null,
-    musicArtworkUrlLarge: null
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPlaying: false,
+      musicTitle: null,
+      musicArtworkUrl: null,
+      musicArtworkUrlLarge: null
+    };
+
+    this.polling = createPoller(15);
+  }
 
   componentDidMount() {
     this.fetchStatus();
 
-    const polling = createPoller(15);
-    polling(() => {
+    this.polling(() => {
       this.fetchStatus();
       return true;
     });
+  }
+
+  componentWillUnmount() {
+    this.polling = undefined;
   }
 
   componentDidUpdate() {
@@ -77,43 +59,67 @@ class Footer extends React.Component {
 
   renderMusicTitle() {
     if (this.state.musicTitle) {
-      const { classes } = this.props;
       return (
-        <Typography className={classes.musicTitle} variant="title">
+        <h4 style={{ color: '#ffffff', marginLeft: '1rem' }}>
           {this.state.musicTitle}
-        </Typography>
+        </h4>
       );
     }
   }
 
   render() {
-    const { classes } = this.props;
     return (
-      <footer>
-        <div className={classes.footer}>
-          {this.state.isPlaying && (
-            <button
-              className={classes.playPauseButton}
-              onClick={() => this.setState({ isPlaying: false })}
-            >
-              Pause
-            </button>
-          )}
-          {!this.state.isPlaying && (
-            <button
-              className={classes.playPauseButton}
-              onClick={() => this.setState({ isPlaying: true })}
-            >
-              Play
-            </button>
-          )}
-          {this.renderEqualizer()}
-          {this.renderMusicTitle()}
-          <audio ref={ref => (this.player = ref)} src={POOLSIDE_FM_STREAM} />
-        </div>
+      <footer
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+          backgroundColor: '#000000',
+          height: '3rem',
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+        {this.state.isPlaying && (
+          <button
+            style={{
+              color: '#212121',
+              backgroundColor: '#faed37',
+              padding: '0.5rem',
+              textAlign: 'center',
+              width: '8rem',
+              fontFamily: 'Harman-Retro',
+              margin: '0.5rem',
+              border: '1px solid #fff'
+            }}
+            onClick={() => this.setState({ isPlaying: false })}
+          >
+            Pause
+          </button>
+        )}
+        {!this.state.isPlaying && (
+          <button
+            style={{
+              color: '#212121',
+              backgroundColor: '#faed37',
+              padding: '0.5rem',
+              textAlign: 'center',
+              width: '8rem',
+              fontFamily: 'Harman-Retro',
+              margin: '0.5rem',
+              border: '1px solid #fff'
+            }}
+            onClick={() => this.setState({ isPlaying: true })}
+          >
+            Play
+          </button>
+        )}
+        {this.renderEqualizer()}
+        {this.renderMusicTitle()}
+        <audio ref={ref => (this.player = ref)} src={POOLSIDE_FM_STREAM} />
       </footer>
     );
   }
 }
 
-export default withStyles(styles)(Footer);
+export default Footer;

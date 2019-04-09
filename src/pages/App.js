@@ -1,7 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import { withStyles, CssBaseline } from '@material-ui/core';
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
+import MediaQuery from 'react-responsive';
 
 import history from '../history';
 import Today from 'pages/app/Today';
@@ -40,42 +39,24 @@ const ROUTES = [
   }
 ];
 
-const styles = theme => ({
-  appRoot: {
-    display: 'flex',
-    minHeight: '100vh',
-    backgroundColor: theme.palette.background.default,
-    width: '100%'
-  },
-  appBar: {
-    flexGrow: 1
-  }
-});
-
 const App = props => {
-  const { classes, theme } = props;
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
-
   return (
-    <div className={classes.appRoot}>
-      <Router history={history}>
-        <CssBaseline />
-        <div className={classes.appBar}>
-          <Header>{ROUTES}</Header>
-          <main>
-            <Switch>
-              <Route path="/" exact component={Today} />
-              <Route path="/news" exact component={News} />
-              <Route path="/social" exact component={Social} />
-              <Route path="/devops" exact component={DevOps} />
-              <Route path="/health" exact component={Health} />
-            </Switch>
-          </main>
-          {matches && <Footer />}
-        </div>
-      </Router>
-    </div>
+    <Router history={history}>
+      <Header>{ROUTES}</Header>
+      <main>
+        <Switch>
+          <Route path="/" exact component={Today} />
+          <Route path="/news" exact component={News} />
+          <Route path="/social" exact component={Social} />
+          <Route path="/devops" exact component={DevOps} />
+          <Route path="/health" exact component={Health} />
+        </Switch>
+      </main>
+      <MediaQuery query="(min-device-width: 960px)">
+        <Footer />
+      </MediaQuery>
+    </Router>
   );
 };
 
-export default withStyles(styles, { withTheme: true })(App);
+export default App;

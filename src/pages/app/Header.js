@@ -1,30 +1,5 @@
 import React from 'react';
-import { withStyles, AppBar, Tabs, Tab } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
-const styles = theme => ({
-  appRoot: {
-    display: 'flex',
-    minHeight: '100vh',
-    backgroundColor: theme.palette.background.default,
-    width: '100%'
-  },
-  appBar: {
-    flexGrow: 1,
-    justifyContent: 'center'
-  },
-  grow: {
-    flexGrow: 1
-  },
-  navItem: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  noIndicator: {
-    display: 'none'
-  }
-});
 
 class Header extends React.Component {
   state = {
@@ -36,38 +11,34 @@ class Header extends React.Component {
   };
 
   renderNavItems() {
-    const { classes, children } = this.props;
+    const { children } = this.props;
     return children.map(({ path, name }) => {
       return (
-        <Tab
-          className={classes.navItem}
-          label={name}
-          component={Link}
-          to={path}
-          key={name}
-        />
+        <li key={name}>
+          <Link
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            key={name}
+            to={path}
+          />
+          {name}
+        </li>
       );
     });
   }
 
   render() {
-    const { classes } = this.props;
     return (
-      <div className={classes.appBar}>
-        <AppBar position="static" color="primary">
-          <Tabs
-            classes={{ indicator: classes.noIndicator }}
-            value={this.state.value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            centered
-          >
-            {this.renderNavItems()}
-          </Tabs>
-        </AppBar>
-      </div>
+      <header>
+        <nav>
+          <ul>{this.renderNavItems()}</ul>
+        </nav>
+      </header>
     );
   }
 }
 
-export default withStyles(styles)(Header);
+export default Header;
