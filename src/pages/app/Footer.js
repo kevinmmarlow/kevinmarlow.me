@@ -41,14 +41,18 @@ class Footer extends React.Component {
   }
 
   fetchStatus() {
-    axios({ url: POOLSIDE_FM_STATUS, method: 'GET' }).then(response => {
-      const currentTrack = response.data.current_track;
-      this.setState({
-        musicTitle: currentTrack.title,
-        musicArtworkUrl: currentTrack.artwork_url,
-        musicArtworkUrlLarge: currentTrack.artwork_url_large
+    axios({ url: POOLSIDE_FM_STATUS, method: 'GET' })
+      .then(response => {
+        const currentTrack = response.data.current_track;
+        this.setState({
+          musicTitle: currentTrack.title,
+          musicArtworkUrl: currentTrack.artwork_url,
+          musicArtworkUrlLarge: currentTrack.artwork_url_large
+        });
+      })
+      .catch(error => {
+        console.error(error);
       });
-    });
   }
 
   renderEqualizer() {
