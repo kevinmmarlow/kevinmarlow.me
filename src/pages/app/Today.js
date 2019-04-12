@@ -1,13 +1,13 @@
 import React from 'react';
-import MediaQuery from 'react-responsive';
 
 import unsplash from 'utils/unsplash';
 import quotes from 'utils/quotes';
 
+import './Today.css';
+
 class Today extends React.Component {
   state = {
-    backgroundUrl: undefined,
-    smallBackgroundUrl: undefined,
+    backgroundUrls: undefined,
     photographer: '',
     quote: '',
     author: ''
@@ -23,15 +23,15 @@ class Today extends React.Component {
       .get('/photos/random', {
         params: {
           featured: true,
-          orientation: 'landscape'
+          orientation: 'landscape',
+          query: 'nature'
         }
       })
       .then(response => {
         const { urls, user } = response.data;
 
         this.setState({
-          backgroundUrl: urls.regular,
-          smallBackgroundUrl: urls.small,
+          backgroundUrls: urls,
           photographer: user.name
         });
       })
@@ -39,8 +39,13 @@ class Today extends React.Component {
         console.error(error);
 
         this.setState({
-          backgroundUrl: `${require('images/ocean-large.jpg')}`,
-          smallBackgroundUrl: `${require('images/ocean-small.jpg')}`,
+          backgroundUrls: {
+            raw: `${require('images/ocean-large.jpg')}`,
+            full: `${require('images/ocean-large.jpg')}`,
+            regular: `${require('images/ocean-large.jpg')}`,
+            small: `${require('images/ocean-small.jpg')}`,
+            thumb: `${require('images/ocean-small.jpg')}`
+          },
           photographer: 'Matt Howard'
         });
       });
@@ -74,88 +79,54 @@ class Today extends React.Component {
   }
 
   renderBackground() {
-    const { backgroundUrl, smallBackgroundUrl, photographer } = this.state;
+    const { backgroundUrls, photographer } = this.state;
 
-    if (backgroundUrl) {
+    if (backgroundUrls) {
+      const { raw, full, regular, small, thumb } = backgroundUrls;
       return (
-        <MediaQuery query="(min-device-width: 961px)">
-          <div
-            style={{
-              width: '100%',
-              maxHeight: '90vh',
-              alignItems: 'center',
-              overflow: 'hidden'
-            }}
-          >
-            <img
-              style={{ width: '100%', display: 'block', objectFit: 'cover' }}
-              src={backgroundUrl}
+        <div className="background-image">
+          <picture>
+            <source
               alt={`by ${photographer}`}
+              media="(min-width: 961px and (min-device-pixel-ratio: 2 or min-resolution: 192dpi or min-resolution: 2dppx))"
+              srcSet={raw}
             />
-          </div>
-        </MediaQuery>
-      );
-    }
-
-    if (smallBackgroundUrl) {
-      return (
-        <MediaQuery query="(max-device-width: 960px)">
-          <div
-            style={{
-              width: '100%',
-              maxHeight: '50vh',
-              alignItems: 'center',
-              overflow: 'hidden'
-            }}
-          >
-            <img
-              style={{ width: '100%', display: 'block', objectFit: 'cover' }}
-              src={smallBackgroundUrl}
+            <source
               alt={`by ${photographer}`}
+              media="(min-width: 961px)"
+              srcSet={full}
             />
-          </div>
-        </MediaQuery>
+            <source
+              alt={`by ${photographer}`}
+              media="(min-width: 401px and max-width: 960px)"
+              srcSet={regular}
+            />
+            <source
+              alt={`by ${photographer}`}
+              media="(min-width: 201px and max-width: 400px)"
+              srcSet={small}
+            />
+            <source
+              alt={`by ${photographer}`}
+              media="(max-width: 200px)"
+              srcSet={thumb}
+            />
+            <img src={regular} alt={`by ${photographer}`} />
+          </picture>
+        </div>
       );
     }
   }
 
   renderOverlay() {
-    const overlay = `${require('images/overlayVignette.png')}`;
-    return (
-      <div
-        style={{
-          backgroundSize: '100% 100%',
-          position: 'absolute',
-          zIndex: 2,
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          backgroundImage: `url(${overlay})`
-        }}
-      />
-    );
+    return <div className="overlay-vignette" />;
   }
 
-  renderText() {
+  renderQuote() {
     const { quote, author } = this.state;
     return (
-      <div
-        style={{
-          fontFamily: 'CenturySchoolbook',
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          display: 'flex',
-          zIndex: 999,
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#FFFFFF'
-        }}
-      >
-        <h1 style={{ fontSize: '3rem' }}>{quote}</h1>
+      <div className="quote-container">
+        <h1>{quote}</h1>
         <br />
         <p>{author}</p>
       </div>
@@ -164,16 +135,10 @@ class Today extends React.Component {
 
   render() {
     return (
-      <div
-        style={{
-          width: '100%',
-          minHeight: '540px',
-          position: 'relative'
-        }}
-      >
+      <div className="container">
         {this.renderBackground()}
         {this.renderOverlay()}
-        {this.renderText()}
+        {this.renderQuote()}
       </div>
     );
   }
