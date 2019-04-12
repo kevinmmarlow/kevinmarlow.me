@@ -74,7 +74,7 @@ class Footer extends React.Component {
           position: 'absolute',
           bottom: 0,
           width: '100%',
-          backgroundColor: '#000000',
+          backgroundColor: '#212121',
           height: '3rem',
           display: 'flex',
           alignItems: 'center'
