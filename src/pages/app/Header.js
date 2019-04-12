@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
+import './Header.css';
 
 class Header extends React.Component {
   state = {
@@ -12,19 +14,19 @@ class Header extends React.Component {
 
   renderNavItems() {
     const { children } = this.props;
+
     return children.map(({ path, name }) => {
+      const isSelected = this.props.location.pathname === path;
+
       return (
-        <li key={name}>
+        <li className={isSelected ? 'selected' : undefined} key={name}>
           <Link
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
+            className={isSelected ? 'selected' : undefined}
             key={name}
             to={path}
-          />
-          {name}
+          >
+            {name}
+          </Link>
         </li>
       );
     });
@@ -41,4 +43,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

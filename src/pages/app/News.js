@@ -1,6 +1,6 @@
 import React from 'react';
 
-const News = () => {
+const News = props => {
   return <div>News</div>;
 };
 

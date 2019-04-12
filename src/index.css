@@ -61,71 +61,7 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
 }
 
-header {
-  text-align: center;
-  color: #fff;
-  position: static;
-  background-color: #212121;
-}
-
 main {
   display: flex;
   justify-content: center;
-}
-
-nav {
-  background-color: #212121;
-}
-
-nav ul {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-nav li {
-  list-style-type: none;
-  width: 50%;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  border-top: 1px solid #888f95;
-}
-
-nav li:nth-of-type(1), nav li:nth-of-type(2) {
-  border-top: none;
-}
-
-nav li:nth-of-type(2n) {
-  border-left: 1px solid #888f95;
-}
-
-nav li.selected {
-  color: #54a5c4;
-}
-
-nav a:link, nav a:visited {
-  color: #888f95;
-  text-decoration: none;
-}
-
-nav a:hover, nav a:visited:hover, nav a:active, nav a:visited:active {
-  color: #54a5c4;
-  text-decoration: underline;
-}
-
-@media only screen and (min-width: 750px) {
-  nav {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
-  nav li {
-    width: auto;
-    border-top: none;
-  }
-  nav li:nth-of-type(2n) {
-    border-left: none;
-  }
 }

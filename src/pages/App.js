@@ -39,7 +39,7 @@ const ROUTES = [
   }
 ];
 
-const App = props => {
+const App = () => {
   return (
     <Router history={history}>
       <Header>{ROUTES}</Header>
