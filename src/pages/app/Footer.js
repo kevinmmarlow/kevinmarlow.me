@@ -75,13 +75,13 @@ class Footer extends React.Component {
     return (
       <footer
         style={{
-          position: 'absolute',
-          bottom: 0,
           width: '100%',
           backgroundColor: '#212121',
           height: '3rem',
           display: 'flex',
-          alignItems: 'center'
+          alignItems: 'center',
+          borderTop: '1px solid #EAEDF0',
+          zIndex: '988'
         }}
       >
         {this.state.isPlaying && (
