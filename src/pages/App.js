@@ -37,6 +37,11 @@ const ROUTES = [
     path: '/health',
     name: 'Health',
     component: Health
+  },
+  {
+    path: '/faq',
+    name: 'FAQ',
+    component: FAQ
   }
 ];
 
