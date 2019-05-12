@@ -8,6 +8,7 @@ import News from 'pages/app/News';
 import Social from 'pages/app/Social';
 import DevOps from 'pages/app/DevOps';
 import Health from 'pages/app/Health';
+import FAQ from 'pages/app/FAQ';
 import Header from './app/Header';
 import Footer from './app/Footer';
 
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/social" exact component={Social} />
           <Route path="/devops" exact component={DevOps} />
           <Route path="/health" exact component={Health} />
+          <Route path="/faq" exact component={FAQ} />
         </Switch>
       </main>
       <MediaQuery query="(min-device-width: 960px)">
