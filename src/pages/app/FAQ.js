@@ -42,28 +42,93 @@ class FAQ extends React.Component {
     }
   }
 
+  renderCode2() {
+    if (this.state.question && this.state.answer) {
+      return (
+        <pre>{`
+            <!-- START OF TOGGLE -->
+            <div class="toggle">
+                <div class="toggle-title">
+                    <h3><i></i> <span class="title-name">${
+                      this.state.question
+                    }</span></h3>
+                </div>
+                    <div class="toggle-inner">
+                    <p>${this.state.answer}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END OF TOGGLE -->
+        `}</pre>
+      );
+    }
+  }
+
+  // handleAnswer(e) {
+  //   {
+  //     this.props.text.split('\n').map((item, key) => {
+  //       return (
+  //         <span key={key}>
+  //           {item}
+  //           <br />
+  //         </span>
+  //       );
+  //     });
+  //   }
+  // }
+
   render() {
     return (
-      <div style={{ padding: '40px' }}>
-        <form style={{ marginBottom: '40px' }}>
-          <div className="field" style={{ marginTop: '20px' }}>
-            <h2>Question:</h2>
-            <input
-              type="text"
-              value={this.state.question}
-              onChange={e => this.setState({ question: e.target.value })}
-            />
-          </div>
-          <div className="field" style={{ marginTop: '20px' }}>
-            <h2>Answer:</h2>
-            <input
-              type="text"
-              value={this.state.answer}
-              onChange={e => this.setState({ answer: e.target.value })}
-            />
-          </div>
-        </form>
-        {this.renderCode()}
+      <div
+        style={{
+          padding: '40px',
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          width: '100%'
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            flexBasis: '100%',
+            flex: 1
+          }}
+        >
+          <form style={{ marginBottom: '40px' }}>
+            <div className="field" style={{ marginTop: '20px' }}>
+              <h2>Question:</h2>
+              <textarea
+                style={{ resize: 'none' }}
+                value={this.state.question}
+                cols={80}
+                rows={5}
+                onChange={e => this.setState({ question: e.target.value })}
+              />
+            </div>
+            <div className="field" style={{ marginTop: '20px' }}>
+              <h2>Answer:</h2>
+              <textarea
+                value={this.state.answer}
+                style={{ resize: 'none' }}
+                onChange={e => this.setState({ answer: e.target.value })}
+                cols={80}
+                rows={20}
+              />
+            </div>
+          </form>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            flexBasis: '100%',
+            flex: 1
+          }}
+        >
+          {this.renderCode2()}
+        </div>
       </div>
     );
   }
