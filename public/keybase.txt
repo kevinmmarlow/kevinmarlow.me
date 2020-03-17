@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/kmarlow
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://kevinmarlow.netlify.com
+  * I am kmarlow (https://keybase.io/kmarlow) on keybase.
+  * I have a public key ASAiTsJ8ZAX_c0CI1PJESmxbLTYMgCclWIWmkIBWIPWLPAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120bcfe5b10fcb62331a890610149d54715fb9e31bc2403d3f08d37db9ebc3bb1dd0a",
+      "host": "keybase.io",
+      "kid": "0120224ec27c6405ff734088d4f2444a6c5b2d360c8027255885a690805620f58b3c0a",
+      "uid": "d72f773b8991706de8e670bd7b0dbd19",
+      "username": "kmarlow"
+    },
+    "merkle_root": {
+      "ctime": 1584414489,
+      "hash": "2796b2a175d9cf5f54087df367e181fde1d76b6a7934bdfa1905173d49abceb0a6cb3a80865af4b8046bd850148dbfba07752cf06fa04f9abb396b184735bee2",
+      "hash_meta": "a933f35fbd7eaa1e29737decfa607b525d9017d603d5ecd857b348bb628d4578",
+      "seqno": 15417658
+    },
+    "service": {
+      "entropy": "jy9Tm9tFEYLUIp3ZKk1AxyKO",
+      "hostname": "kevinmarlow.netlify.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.3.0"
+  },
+  "ctime": 1584414525,
+  "expire_in": 504576000,
+  "prev": "eca5ccb6fd9315c158b3c3003e216eddbd380e240367105c9c8465dc50329127",
+  "seqno": 25,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgIk7CfGQF/3NAiNTyREpsWy02DIAnJViFppCAViD1izwKp3BheWxvYWTESpcCGcQg7KXMtv2TFcFYs8MAPiFu3b04DiQDZxBcnIRl3FAykSfEIDPYFRbgi7irg9cHC5B2EPjEyswv1uxry/v7SIi6RS2VAgHCo3NpZ8RAlnoFA807ZBN+0p+668Zv3XtKZMnHVOONPsxlE5cSEnV0KU94///+p/1LRyB8SF0FKkL+jRKKYG6pgr4IHlC1DahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIGT6V6xA+wpSAVv7zcm6Il289pYGXBfyF5sWWmlUkdaSo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/kmarlow
+
+==================================================================
